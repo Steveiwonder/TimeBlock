@@ -54,7 +54,7 @@ Here are some examples of TimeBlock specifications:
 
 |Spec|Explanation|
 |----|-----------|
-|\* * * * * *:| Matches all times.|
-|/5 * * * * *:| Matches every 5 seconds.|
+|\* * * * * *| Matches all times.|
+|/5 * * * * *| Matches every 5 seconds.|
 |* 20 10 Sun Dec 1995|Matches the specific date and time of December 5, 1995 at 10:20 AM.
 |30-45 * * Mon,Tue,Fri * *|Matches all times between 30 and 45 seconds past the minute on Mondays, Tuesdays, and Fridays.|
