@@ -16,10 +16,11 @@ To use the TimeBlock library, you can either create a new `TimeBlock` object dir
 
 ```c#
 // Create a TimeBlock object directly.
-var weekdayLunchtime = new TimeBlock(
-    hours: new IntervalUnit(30),
-    days: new SingleUnit(1, 2, 3, 4, 5)
-);
+
+// Every 5 minutes
+new Core.TimeBlock(
+    seconds: AlwaysUnit.Value,
+    minutes: IntervalUnit.From(5));
 
 // Parse a time block specification from a string.
 var timeBlock = TimeBlockParser.Parse("* * 12-14 Mon-Fri * *"); Every Mon-Fri between 1200-1400
