@@ -13,12 +13,12 @@ namespace TimeBlock.Core
             IUnit years = null
            )
         {
-            Seconds = seconds;
-            Minutes = minutes;
-            Hours = hours;
-            Days = days;
-            Months = months;
-            Years = years;
+            Seconds = seconds ?? AlwaysUnit.Value;
+            Minutes = minutes ?? AlwaysUnit.Value;
+            Hours = hours ?? AlwaysUnit.Value;
+            Days = days ?? AlwaysUnit.Value;
+            Months = months ?? AlwaysUnit.Value;
+            Years = years ?? AlwaysUnit.Value;
         }
 
         public IUnit Seconds { get; }
