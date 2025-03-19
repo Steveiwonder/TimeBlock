@@ -4,6 +4,7 @@ namespace TimeBlock.Core
     public class SingleUnit : IUnit
     {
         private int _value;
+        public int Value => _value;
         public SingleUnit(int value)
         {
             _value = value;
@@ -16,17 +17,12 @@ namespace TimeBlock.Core
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
-            var unit = obj as SingleUnit;
-            return unit._value == _value;
+            return obj is SingleUnit unit && unit._value == _value;
         }
 
         public override int GetHashCode()
         {
-            return 17 * 23 * _value;
+            return _value;
         }
 
         public static SingleUnit From(int value)

@@ -4,6 +4,8 @@ namespace TimeBlock.Core
     {
         public const char Idenifier = ',';
         private int[] _units;
+
+        public int[] Units => _units;
         public SpecificUnit(int[] units)
         {
             _units = units ?? Array.Empty<int>();

@@ -1,17 +1,19 @@
-
 namespace TimeBlock.Core
 {
     public class RangeUnit : IUnit
     {
-
         public const char Idenifier = '-';
         private int _upper { get; }
         private int _lower { get; }
 
+        public int Upper => _upper;
+        public int Lower => _lower;
 
-
-        public RangeUnit(int upper, int lower)
+        public RangeUnit(int lower, int upper)
         {
+            if (upper < lower)
+                throw new ArgumentException("Upper bound must be greater than lower bound");
+
             _upper = upper;
             _lower = lower;
         }
