@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace TimeBlock.Core
 {
 
-    internal class TimeBlockParser
+    public class TimeBlockParser
     {
 
         private static Dictionary<string, int> MonthNumberMapping = new Dictionary<string, int>(){
@@ -41,11 +41,11 @@ namespace TimeBlock.Core
             {
                 return true;
             }
-            if (DayNumberMapping.ContainsKey(unit))
+            if (DayNumberMapping.TryGetValue(unit, out result))
             {
-                result = DayNumberMapping[unit];
                 return true;
             }
+
             result = -1;
             return false;
         };
@@ -56,9 +56,8 @@ namespace TimeBlock.Core
             {
                 return true;
             }
-            if (MonthNumberMapping.ContainsKey(unit))
+            if (MonthNumberMapping.TryGetValue(unit, out result))
             {
-                result = MonthNumberMapping[unit];
                 return true;
             }
             result = -1;
