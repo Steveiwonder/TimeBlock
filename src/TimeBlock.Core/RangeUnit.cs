@@ -1,3 +1,5 @@
+using System;
+
 namespace TimeBlock.Core
 {
     public class RangeUnit : IUnit

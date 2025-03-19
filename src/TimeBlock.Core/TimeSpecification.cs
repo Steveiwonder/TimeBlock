@@ -1,3 +1,5 @@
+using System;
+
 namespace TimeBlock.Core
 {
     // S M D M Y
@@ -45,14 +47,27 @@ namespace TimeBlock.Core
                    $"{FormatUnit(Days)} {FormatUnit(Months)} {FormatUnit(Years)}";
         }
 
-        private string FormatUnit(IUnit unit) => unit switch
+        private string FormatUnit(IUnit unit)
         {
-            AlwaysUnit => "*",
-            RangeUnit r => $"{r.Lower}-{r.Upper}",
-            SingleUnit s => s.Value.ToString(),
-            SpecificUnit sp => string.Join(",", sp.Units),
-            _ => throw new NotImplementedException($"Unknown unit type: {unit.GetType()}")
-        };
+            switch (unit)
+            {
+                case AlwaysUnit a:
+                    return "*";
+
+                case RangeUnit r:
+                    return $"{r.Lower}-{r.Upper}";
+
+                case SingleUnit s:
+                    return s.Value.ToString();
+
+                case SpecificUnit sp:
+                    return string.Join(",", sp.Units);
+
+                default:
+                    throw new NotImplementedException($"Unknown unit type: {unit.GetType()}");
+            }
+        }
+
     }
 
 

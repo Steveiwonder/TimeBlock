@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 namespace TimeBlock.Core
 {
     public class SpecificUnit : IUnit
@@ -27,7 +30,8 @@ namespace TimeBlock.Core
                 return false;
             }
             var unit = obj as SpecificUnit;
-            return unit._units.Order().SequenceEqual(_units.Order());
+
+            return unit._units.OrderBy(d => d).SequenceEqual(_units.OrderBy(d => d));
         }
 
         public override int GetHashCode()
