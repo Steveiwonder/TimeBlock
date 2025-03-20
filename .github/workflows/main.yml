@@ -2,8 +2,8 @@ name: Build & Publish
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -14,10 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Generate Version from Build ID
+        run: echo "PACKAGE_VERSION=1.0.${{ github.run_number }}" >> $GITHUB_ENV
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x'
+
+      - name: Update .csproj version
+        run: |
+          sed -i 's|<Version>.*</Version>|<Version>${{ env.PACKAGE_VERSION }}</Version>|' src/TimeBlock.Core/TimeBlock.Core.csproj
 
       - name: Restore dependencies
         run: dotnet restore src/TimeBlock.Core/TimeBlock.Core.csproj
